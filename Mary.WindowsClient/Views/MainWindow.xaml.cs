@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.AspNetCore.SignalR.Client;
 
-namespace Mary.WindowsClient
+namespace Mary.WindowsClient.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
