@@ -7,7 +7,9 @@
   </PropertyGroup>
 
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.json .\" Condition=" '$(OS)' == 'Windows_NT' " />
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.Development.json .\" Condition=" '$(OS)' == 'Windows_NT' " />
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.$(ASPNETCORE_ENVIRONMENT).json .\" Condition=" (('$(OS)' == 'Windows_NT') And ($(ASPNETCORE_ENVIRONMENT) != ''))" />
 	</Target>
 
   <ItemGroup>

@@ -1,9 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.json .\" Condition=" '$(OS)' == 'Windows_NT' " />
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.Development.json .\" Condition=" '$(OS)' == 'Windows_NT' " />
+		<Exec Command="Xcopy /Y /S /E .\..\Mary.Configs\appsettings.$(ASPNETCORE_ENVIRONMENT).json .\" Condition=" (('$(OS)' == 'Windows_NT') And ($(ASPNETCORE_ENVIRONMENT) != ''))" />
+	</Target>
 
 </Project>
